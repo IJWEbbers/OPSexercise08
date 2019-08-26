@@ -17,6 +17,8 @@ int runningProducers = 0;
 
 pthread_mutex_t lock;
 
+FILE * fp;
+
 void *producer(void *input);
 void *consumer(void *input);
 void sighandler(int sig_num);
@@ -69,6 +71,7 @@ void *consumer(void *input)
       sleep(15);
       pthread_mutex_lock(&lock);
       showQueue(&queue);
+      showQueueToFile(&queue, "log.txt");
       deleteQueue(&queue);
       pthread_mutex_unlock(&lock);
       if(runningProducers<=0)

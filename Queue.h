@@ -39,5 +39,5 @@ void pushQueue(queue_t* queue, data_t data);
 void popQueue(queue_t* queue);
 void deleteQueue(queue_t* queue);
 void showQueue(const queue_t* queue);
-
+void showQueueToFile(const queue_t* queue, const char *filename);
 #endif

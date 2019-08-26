@@ -117,3 +117,17 @@ void showQueue(const queue_t* queue) {
     } while(nextN != queue->lastNode);
   }
 }
+
+// Write the data/nodes in a queue to a file:
+void showQueueToFile(const queue_t* queue, const char *filename) {
+  const node_t* nextN = queue->lastNode;
+  if(nextN != NULL) {
+    FILE *out = fopen(filename, "a");
+    fprintf(out, "Queue contains %ld nodes:\n", sizeQueue(queue));
+    do {
+      nextN = nextN->nextNode;
+      fprintf(out, "pNode = %p  Data = '%d' '%s'  nextN = %p\n",
+             (void*)nextN, nextN->data.intVal, nextN->data.text, (void*)nextN->nextNode);
+    } while(nextN != queue->lastNode);
+  }
+}
